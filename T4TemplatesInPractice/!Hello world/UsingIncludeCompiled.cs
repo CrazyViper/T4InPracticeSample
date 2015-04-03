@@ -15,7 +15,7 @@ namespace T4TemplatesInPractice._Hello_world
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\pmuzyka\Личное\!Доклады\T4TemplatesInPractice\T4TemplatesInPractice\!Hello world\UsingIncludeCompiled.tt"
+    #line 1 "C:\Users\pmuzyka\Личное\!Доклады\T4InPracticeSample\T4TemplatesInPractice\!Hello world\UsingIncludeCompiled.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
     public partial class UsingIncludeCompiled : UsingIncludeCompiledBase
     {
@@ -27,7 +27,7 @@ namespace T4TemplatesInPractice._Hello_world
         {
             this.Write("\r\n");
             
-            #line 4 "C:\Users\pmuzyka\Личное\!Доклады\T4TemplatesInPractice\T4TemplatesInPractice\!Hello world\UsingIncludeCompiled.tt"
+            #line 4 "C:\Users\pmuzyka\Личное\!Доклады\T4InPracticeSample\T4TemplatesInPractice\!Hello world\UsingIncludeCompiled.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(string.Format("PRINT '{0}';", _hello)));
             
             #line default
@@ -36,7 +36,7 @@ namespace T4TemplatesInPractice._Hello_world
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 2 "C:\Users\pmuzyka\Личное\!Доклады\T4TemplatesInPractice\T4TemplatesInPractice\!Hello world\TemplateForInclude.ttinclude"
+        #line 2 "C:\Users\pmuzyka\Личное\!Доклады\T4InPracticeSample\T4TemplatesInPractice\!Hello world\TemplateForInclude.ttinclude"
  private string _hello = "Hello world"; 
         
         #line default

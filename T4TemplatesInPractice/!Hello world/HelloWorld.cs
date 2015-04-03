@@ -15,7 +15,7 @@ namespace T4TemplatesInPractice._Hello_world
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\pmuzyka\Личное\!Доклады\T4TemplatesInPractice\T4TemplatesInPractice\!Hello world\HelloWorld.tt"
+    #line 1 "C:\Users\pmuzyka\Личное\!Доклады\T4InPracticeSample\T4TemplatesInPractice\!Hello world\HelloWorld.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
     public partial class HelloWorld : HelloWorldBase
     {
@@ -27,7 +27,7 @@ namespace T4TemplatesInPractice._Hello_world
         {
             this.Write("Hello\r\n");
             
-            #line 4 "C:\Users\pmuzyka\Личное\!Доклады\T4TemplatesInPractice\T4TemplatesInPractice\!Hello world\HelloWorld.tt"
+            #line 4 "C:\Users\pmuzyka\Личное\!Доклады\T4InPracticeSample\T4TemplatesInPractice\!Hello world\HelloWorld.tt"
  Write(" world");
             
             #line default

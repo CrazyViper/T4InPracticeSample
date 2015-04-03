@@ -15,7 +15,7 @@ namespace T4TemplatesInPractice._Hello_world
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\pmuzyka\Личное\!Доклады\T4TemplatesInPractice\T4TemplatesInPractice\!Hello world\HelloWorldTemplate.tt"
+    #line 1 "C:\Users\pmuzyka\Личное\!Доклады\T4InPracticeSample\T4TemplatesInPractice\!Hello world\HelloWorldTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
     public partial class HelloWorldTemplate : HelloWorldTemplateBase
     {
@@ -26,7 +26,7 @@ namespace T4TemplatesInPractice._Hello_world
         public virtual string TransformText()
         {
             
-            #line 3 "C:\Users\pmuzyka\Личное\!Доклады\T4TemplatesInPractice\T4TemplatesInPractice\!Hello world\HelloWorldTemplate.tt"
+            #line 3 "C:\Users\pmuzyka\Личное\!Доклады\T4InPracticeSample\T4TemplatesInPractice\!Hello world\HelloWorldTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(string.Format("PRINT '{0}';", _hello)));
             
             #line default
@@ -35,7 +35,7 @@ namespace T4TemplatesInPractice._Hello_world
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 4 "C:\Users\pmuzyka\Личное\!Доклады\T4TemplatesInPractice\T4TemplatesInPractice\!Hello world\HelloWorldTemplate.tt"
+        #line 4 "C:\Users\pmuzyka\Личное\!Доклады\T4InPracticeSample\T4TemplatesInPractice\!Hello world\HelloWorldTemplate.tt"
  private string _hello = "Hello world"; 
         
         #line default
