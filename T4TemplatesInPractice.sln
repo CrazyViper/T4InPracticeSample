@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4TemplatesInPractice", "T4TemplatesInPractice\T4TemplatesInPractice.csproj", "{F16D97F7-7E4A-4E4D-8D70-755840860CD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseSchemaReader.Extensions", "DatabaseSchemaReader.Extensions\DatabaseSchemaReader.Extensions.csproj", "{DD4CBB96-7A8E-498C-A9FD-F9E5EB4B3886}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Net4|Any CPU = Net4|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F16D97F7-7E4A-4E4D-8D70-755840860CD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F16D97F7-7E4A-4E4D-8D70-755840860CD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F16D97F7-7E4A-4E4D-8D70-755840860CD2}.Net4|Any CPU.ActiveCfg = Release|Any CPU
+		{F16D97F7-7E4A-4E4D-8D70-755840860CD2}.Net4|Any CPU.Build.0 = Release|Any CPU
+		{F16D97F7-7E4A-4E4D-8D70-755840860CD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F16D97F7-7E4A-4E4D-8D70-755840860CD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD4CBB96-7A8E-498C-A9FD-F9E5EB4B3886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD4CBB96-7A8E-498C-A9FD-F9E5EB4B3886}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD4CBB96-7A8E-498C-A9FD-F9E5EB4B3886}.Net4|Any CPU.ActiveCfg = Release|Any CPU
+		{DD4CBB96-7A8E-498C-A9FD-F9E5EB4B3886}.Net4|Any CPU.Build.0 = Release|Any CPU
+		{DD4CBB96-7A8E-498C-A9FD-F9E5EB4B3886}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD4CBB96-7A8E-498C-A9FD-F9E5EB4B3886}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

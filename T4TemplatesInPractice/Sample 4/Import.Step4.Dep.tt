@@ -1,0 +1,40 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="sql" encoding="utf-8" #>
+<#@ include file="Import.Step4.Base.ttinclude"#>
+<#
+    DropCreateProcedure("Source.ImportDepartments");
+
+    var departmentSource = new T4TemplatesInPractice.DDL.Source.DepartmentTable();
+    var departmentTarget = new T4TemplatesInPractice.DDL.Staff.DepartmentTable();
+
+    var departmentTemp = departmentTarget.CloneToTempTable();
+
+    var depColumnsMap = new ColumnsMappingCollection
+    {
+        new ColumnsMapping(departmentTarget.C_SourceId.Name, departmentSource.C_Id.Name),
+        new ColumnsMapping(departmentTarget.C_FullName.Name, departmentSource.C_FullName.Name),
+        new ColumnsMapping(departmentTarget.C_ShortName.Name, departmentSource.C_ShortName.Name),
+    };
+
+    CreateTempTable(departmentTemp);
+#>
+
+    INSERT INTO <#=departmentTemp.FullName()#>
+    (
+         <#=depColumnsMap.TargeteList#>
+    )
+    SELECT
+         <#=depColumnsMap.SourceList#>
+    FROM <#=departmentSource.FullName()#>
+    ;
+
+    UPDATE <#=departmentTemp.Name#>
+    SET <#=departmentTemp.GetColumn("HasErrors").Name#> = 1
+    WHERE <#=departmentTemp.GetColumn("FullName").Name#> IS NULL
+    ;
+<#
+    SaveTempTable(departmentTemp, departmentTarget);
+#>
+<#
+    EndProcedure();
+#>

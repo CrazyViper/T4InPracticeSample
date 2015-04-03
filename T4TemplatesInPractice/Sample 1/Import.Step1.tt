@@ -1,0 +1,55 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="sql" encoding="utf-8" #>
+<#
+    DropCreateProcedure("Source.ImportDepartments");
+#>
+
+    INSERT INTO Staff.Department
+        (SourceId,FullName,ShortName)
+    SELECT
+        Id,FullName,ShortName
+    FROM Source.Department
+    ;
+
+<#
+    EndProcedure();
+#>
+
+<#
+    DropCreateProcedure("Source.ImportEmployee");
+#>
+
+   INSERT INTO Staff.Employee
+        (SourceId,LastName,FirstName,DepartmentId)
+    SELECT
+        Id,LastName,FirstName,DepartmentId
+    FROM Source.Employee
+    ;
+
+<#
+    EndProcedure();
+#>
+
+<#+
+    void DropCreateProcedure(string name)
+    {
+#>    
+ -- создаем процедуру <#=name#>
+IF OBJECT_ID ('<#=name#>', 'P') IS NOT NULL
+    DROP PROCEDURE <#=name#>e
+GO
+
+CREATE PROCEDURE <#=name#>
+AS
+BEGIN
+<#+
+    }
+
+    void EndProcedure()
+    {
+#>
+END
+GO
+<#+    
+    }
+#>

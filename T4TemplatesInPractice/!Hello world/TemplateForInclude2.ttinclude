@@ -1,0 +1,2 @@
+﻿<#@ template language="C#" debug="True" #>
+<#+ private string _hello = "Hello world"; #>

@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F16D97F7-7E4A-4E4D-8D70-755840860CD2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>T4TemplatesInPractice</RootNamespace>
+    <AssemblyName>T4TemplatesInPractice</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DatabaseSchemaReader, Version=1.4.0.32, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DatabaseSchemaReader.1.4.0.32\lib\net40\DatabaseSchemaReader.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="!Hello world\HelloWorld.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HelloWorld.tt</DependentUpon>
+    </Compile>
+    <Compile Include="!Hello world\HelloWorldTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HelloWorldTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DDL\Source\TableDeclarations.cs" />
+    <Compile Include="DDL\Staff\TableDeclarations.cs" />
+    <Compile Include="!Hello world\UsingIncludeCompiled.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsingIncludeCompiled.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ColumnsMapping.cs" />
+    <None Include="!Hello world\HelloWorld.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>HelloWorld.cs</LastGenOutput>
+    </None>
+    <None Include="!Hello world\TemplateForInclude2.ttinclude" />
+    <None Include="DDL\ClassDiagram1.cd" />
+    <None Include="DDL\CreateSchemas.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CreateSchemas.sql</LastGenOutput>
+    </None>
+    <None Include="!Hello world\UsingIncludeCompiled.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>UsingIncludeCompiled.cs</LastGenOutput>
+    </None>
+    <None Include="!Hello world\UsingInclude.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UsingInclude.sql</LastGenOutput>
+    </None>
+    <None Include="!Hello world\TemplateForInclude.ttinclude" />
+    <None Include="!Hello world\HelloWorldTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>HelloWorldTemplate.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DDL\CreateSchemas.sql">
+      <DependentUpon>CreateSchemas.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="DDL\Source\DDL.Source.sql" />
+    <Content Include="DDL\Staff\DDL.Staff.sql" />
+    <Content Include="!Hello world\UsingInclude.sql">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsingInclude.tt</DependentUpon>
+    </Content>
+    <Content Include="Sample 5\Import.Step5.Dep.sql">
+      <DependentUpon>Import.Step5.Dep.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Sample 5\Import.Step5.Emp.sql">
+      <DependentUpon>Import.Step5.Emp.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Sample 4\Import.Step4.Dep.sql">
+      <DependentUpon>Import.Step4.Dep.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Sample 4\Import.Step4.Emp.sql">
+      <DependentUpon>Import.Step4.Emp.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Sample 3\Import.Step3.Dep.sql">
+      <DependentUpon>Import.Step3.Dep.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Sample 2\Import.Step2.sql">
+      <DependentUpon>Import.Step2.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Sample 1\Import.Step1.sql">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Import.Step1.tt</DependentUpon>
+    </Content>
+    <Content Include="Sample 3\Import.Step3.Emp.sql">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Import.Step3.Emp.tt</DependentUpon>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="Sample 5\Import.Step5.Base.ttinclude" />
+    <None Include="Sample 5\Import.Step5.Dep.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Import.Step5.Dep.sql</LastGenOutput>
+    </None>
+    <None Include="Sample 5\Import.Step5.Emp.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Import.Step5.Emp.sql</LastGenOutput>
+    </None>
+    <None Include="Sample 4\Import.Step4.Base.ttinclude" />
+    <None Include="Sample 4\Import.Step4.Dep.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Import.Step4.Dep.sql</LastGenOutput>
+    </None>
+    <None Include="Sample 4\Import.Step4.Emp.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Import.Step4.Emp.sql</LastGenOutput>
+    </None>
+    <None Include="Sample 3\Import.Step3.Base.ttinclude" />
+    <None Include="Sample 3\Import.Step3.Emp.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Import.Step3.Emp.sql</LastGenOutput>
+    </None>
+    <None Include="Sample 3\Import.Step3.Dep.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Import.Step3.Dep.sql</LastGenOutput>
+    </None>
+    <None Include="Sample 2\Import.Step2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Import.Step2.sql</LastGenOutput>
+    </None>
+    <None Include="Sample 1\Import.Step1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Import.Step1.sql</LastGenOutput>
+    </None>
+    <Content Include="Import.Orig.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseSchemaReader.Extensions\DatabaseSchemaReader.Extensions.csproj">
+      <Project>{dd4cbb96-7a8e-498c-a9fd-f9e5eb4b3886}</Project>
+      <Name>DatabaseSchemaReader.Extensions</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

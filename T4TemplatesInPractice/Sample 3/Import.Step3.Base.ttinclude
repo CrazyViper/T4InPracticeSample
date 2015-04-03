@@ -1,0 +1,34 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="sql" encoding="utf-8" #>
+<#@ assembly name="$(TargetDir)T4TemplatesInPractice.dll" #>
+<#@ assembly name="$(SolutionDir)DatabaseSchemaReader.Extensions\bin\Debug\DatabaseSchemaReader.Extensions.dll" #>
+<#@ assembly name="$(SolutionDir)packages\\DatabaseSchemaReader.1.4.0.32\lib\net40\DatabaseSchemaReader.dll" #>
+<#@ import namespace="System.Collections.Generic"#>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq"#>
+<#@ import namespace="DatabaseSchemaReader.DataSchema"#>
+<#@ import namespace="DatabaseSchemaReader.Extensions"#>
+<#@ import namespace="T4TemplatesInPractice"#>
+<#+
+    void DropCreateProcedure(string name)
+    {
+#>    
+ -- создаем процедуру <#=name#>
+IF OBJECT_ID ('<#=name#>', 'P') IS NOT NULL
+    DROP PROCEDURE <#=name#>e
+GO
+
+CREATE PROCEDURE <#=name#>
+AS
+BEGIN
+<#+
+    }
+
+    void EndProcedure()
+    {
+#>
+END
+GO
+<#+    
+    }
+#>

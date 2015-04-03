@@ -1,0 +1,87 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="sql" encoding="utf-8" #>
+<#@ assembly name="$(TargetDir)T4TemplatesInPractice.dll" #>
+<#@ assembly name="$(SolutionDir)DatabaseSchemaReader.Extensions\bin\Debug\DatabaseSchemaReader.Extensions.dll" #>
+<#@ assembly name="$(SolutionDir)packages\\DatabaseSchemaReader.1.4.0.32\lib\net40\DatabaseSchemaReader.dll" #>
+<#@ import namespace="System.Collections.Generic"#>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq"#>
+<#@ import namespace="DatabaseSchemaReader.DataSchema"#>
+<#@ import namespace="DatabaseSchemaReader.Extensions"#>
+<#
+    DropCreateProcedure("Source.ImportDepartments");
+
+    var departmentSource = new T4TemplatesInPractice.DDL.Source.DepartmentTable();
+    var departmentTarget = new T4TemplatesInPractice.DDL.Staff.DepartmentTable();
+
+    var depColumnsMap = new List<ColumnsMapping>()
+    {
+        new ColumnsMapping(departmentTarget.C_SourceId.Name, departmentSource.C_Id.Name),
+        new ColumnsMapping(departmentTarget.C_FullName.Name, departmentSource.C_FullName.Name),
+        new ColumnsMapping(departmentTarget.C_ShortName.Name, departmentSource.C_ShortName.Name),
+    };
+#>
+
+    INSERT INTO <#=departmentTarget.FullName()#>
+    (
+         <#=string.Join(", ", depColumnsMap.Select(map => map.Target))#>
+    )
+    SELECT
+         <#=string.Join(", ", depColumnsMap.Select(map => map.Source))#>
+    FROM <#=departmentSource.FullName()#>
+    ;
+
+<#
+    EndProcedure();
+#>
+
+<#
+    DropCreateProcedure("Source.ImportEmployee");
+#>
+
+   INSERT INTO Staff.Employee
+        (SourceId,LastName,FirstName,DepartmentId)
+    SELECT
+        Id,LastName,FirstName,DepartmentId
+    FROM Source.Employee
+    ;
+
+<#
+    EndProcedure();
+#>
+
+<#+
+    public class ColumnsMapping
+    {
+        public string Target { get; private set; }
+        public string Source { get; private set; }
+
+        public ColumnsMapping(string target, string source)
+        {
+            Target = target;
+            Source = source;
+        }
+    }
+
+    void DropCreateProcedure(string name)
+    {
+#>    
+ -- создаем процедуру <#=name#>
+IF OBJECT_ID ('<#=name#>', 'P') IS NOT NULL
+    DROP PROCEDURE <#=name#>e
+GO
+
+CREATE PROCEDURE <#=name#>
+AS
+BEGIN
+<#+
+    }
+
+    void EndProcedure()
+    {
+#>
+END
+GO
+<#+    
+    }
+#>

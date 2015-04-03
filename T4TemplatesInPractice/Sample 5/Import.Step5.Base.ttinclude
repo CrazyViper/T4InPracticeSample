@@ -1,0 +1,72 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="sql" encoding="utf-8" #>
+<#@ assembly name="$(TargetDir)T4TemplatesInPractice.dll" #>
+<#@ assembly name="$(SolutionDir)DatabaseSchemaReader.Extensions\bin\Debug\DatabaseSchemaReader.Extensions.dll" #>
+<#@ assembly name="$(SolutionDir)packages\\DatabaseSchemaReader.1.4.0.32\lib\net40\DatabaseSchemaReader.dll" #>
+<#@ import namespace="System.Collections.Generic"#>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq"#>
+<#@ import namespace="DatabaseSchemaReader.DataSchema"#>
+<#@ import namespace="DatabaseSchemaReader.Extensions"#>
+<#@ import namespace="T4TemplatesInPractice"#>
+<#+
+    void DropCreateProcedure(string name)
+    {
+#>    
+ -- создаем процедуру <#=name#>
+IF OBJECT_ID ('<#=name#>', 'P') IS NOT NULL
+    DROP PROCEDURE <#=name#>e
+GO
+
+CREATE PROCEDURE <#=name#>
+AS
+BEGIN
+<#+
+    }
+
+    void EndProcedure()
+    {
+#>
+END
+GO
+<#+    
+    }
+
+    void CreateTempTable(DatabaseTable table)
+    {
+        var tempTableName = table.FullName();
+#>    
+    IF (OBJECT_ID ( '<#="tempdb.." + tempTableName#>' ) IS NOT NULL)
+        DROP TABLE <#=tempTableName#>;
+    CREATE TABLE <#=tempTableName#> (<#=table.GetColumnsDeclarations()#>);
+<#+    
+    }
+
+    private ColumnsMappingCollection SystemColumnsMap = new ColumnsMappingCollection()
+    {
+        new ColumnsMapping("Timestamp", "SYSDATETIME()")
+    };
+
+    void SaveTempTable(DatabaseTable temp, DatabaseTable target)
+    {
+        var tempColumnsMap = new ColumnsMappingCollection();
+        var colsToExclude = DatabaseTableExtensions.SystemColumnNames.Union(new[] {"Id"});
+        tempColumnsMap.AddRange(
+            target.Columns.Where(col => !colsToExclude.Contains(col.Name))
+                          .Select(col => new ColumnsMapping(col.Name, col.Name)));
+        tempColumnsMap.AddRange(SystemColumnsMap);
+#>
+
+    INSERT INTO <#=target.FullName()#>
+    (
+         <#=tempColumnsMap.TargeteList#>
+    )
+    SELECT
+         <#=tempColumnsMap.SourceList#>
+    FROM <#=temp.FullName()#>
+    WHERE
+        <#=temp.GetColumn("HasErrors").Name#> = 0
+    ;
+<#+
+    }
+#>

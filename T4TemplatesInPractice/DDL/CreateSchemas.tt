@@ -1,0 +1,23 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="sql" encoding="utf-8" #>
+<#
+    var schemas = new[] {"Staff", "Source"};
+
+    foreach (var schema in schemas)
+    {
+        CreateSchema(schema);
+    }
+#>
+<#+
+    public void CreateSchema(string shemaName, string user = "T4User")
+    {
+#>
+---------------------------------------------------------------------------------
+IF  NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'<#=shemaName#>')
+    EXEC('CREATE SCHEMA <#=shemaName#> AUTHORIZATION <#=user#>')
+GO
+---------------------------------------------------------------------------------
+
+<#+
+    }
+#>

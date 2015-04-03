@@ -1,0 +1,29 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="sql" encoding="utf-8" #>
+<#@ include file="Import.Step3.Base.ttinclude"#>
+<#
+    DropCreateProcedure("Source.ImportDepartments");
+
+    var departmentSource = new T4TemplatesInPractice.DDL.Source.DepartmentTable();
+    var departmentTarget = new T4TemplatesInPractice.DDL.Staff.DepartmentTable();
+
+    var depColumnsMap = new ColumnsMappingCollection
+    {
+        new ColumnsMapping(departmentTarget.C_SourceId.Name, departmentSource.C_Id.Name),
+        new ColumnsMapping(departmentTarget.C_FullName.Name, departmentSource.C_FullName.Name),
+        new ColumnsMapping(departmentTarget.C_ShortName.Name, departmentSource.C_ShortName.Name),
+    };
+#>
+
+    INSERT INTO <#=departmentTarget.FullName()#>
+    (
+         <#=depColumnsMap.TargeteList#>
+    )
+    SELECT
+         <#=depColumnsMap.SourceList#>
+    FROM <#=departmentSource.FullName()#>
+    ;
+
+<#
+    EndProcedure();
+#>

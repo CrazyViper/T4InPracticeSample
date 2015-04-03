@@ -1,0 +1,35 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="sql" encoding="utf-8" #>
+<#@ include file="Import.Step3.Base.ttinclude"#>
+<#
+    DropCreateProcedure("Source.ImportEmployee");
+
+    var employeeSource = new T4TemplatesInPractice.DDL.Source.EmployeeAlias();
+    var employeeTarget = new T4TemplatesInPractice.DDL.Staff.EmployeeTable();
+    var departmentTarget = new T4TemplatesInPractice.DDL.Staff.DepartmentAlias();
+
+    var empColumnsMap = new ColumnsMappingCollection
+    {
+        new ColumnsMapping(employeeTarget.C_SourceId.Name, employeeSource.C_Id.FullName),
+        new ColumnsMapping(employeeTarget.C_LastName.Name, employeeSource.C_LastName.FullName),
+        new ColumnsMapping(employeeTarget.C_FirstName.Name, employeeSource.C_FirstName.FullName),
+        new ColumnsMapping(employeeTarget.C_Birthday.Name, employeeSource.C_Birthday.FullName),
+        new ColumnsMapping(employeeTarget.C_DepartmentId.Name, departmentTarget.C_Id.FullName),
+    };
+#>
+
+    INSERT INTO <#=employeeTarget.FullName()#>
+    (
+         <#=empColumnsMap.TargeteList#>
+    )
+    SELECT
+         <#=empColumnsMap.SourceList#>
+    FROM 
+        <#=employeeSource.From()#>
+        INNER JOIN <#=departmentTarget.From()#>
+            ON <#=employeeSource.C_DepartmentId.FullName#> = <#=departmentTarget.C_SourceId.FullName#>
+    ;
+
+<#
+    EndProcedure();
+#>

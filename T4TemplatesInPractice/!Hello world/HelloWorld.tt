@@ -1,0 +1,5 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="sql" encoding="utf-8" #>
+Hello
+<# Write(" world");#> 
+

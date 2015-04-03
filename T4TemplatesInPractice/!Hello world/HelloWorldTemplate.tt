@@ -1,0 +1,4 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="sql" encoding="utf-8" #>
+<#= string.Format("PRINT '{0}';", _hello) #>
+<#+ private string _hello = "Hello world"; #>
